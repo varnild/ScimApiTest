@@ -1,6 +1,6 @@
-/Users/sebastienvarnild/git/repository/ScimApiTest/src/main/java/com/ibm/teamserver/scimApi/ServiceController.java
-/Users/sebastienvarnild/git/repository/ScimApiTest/src/main/java/com/ibm/teamserver/scimApi/ScimService.java
-/Users/sebastienvarnild/git/repository/ScimApiTest/src/main/java/com/ibm/teamserver/scimApi/ScimApiTestApplication.java
-/Users/sebastienvarnild/git/repository/ScimApiTest/src/main/java/com/ibm/teamserver/scimApi/RestExceptionHandler.java
-/Users/sebastienvarnild/git/repository/ScimApiTest/src/main/java/com/ibm/teamserver/scimApi/JsonResourceLoader.java
-/Users/sebastienvarnild/git/repository/ScimApiTest/src/main/java/com/ibm/teamserver/scimApi/ScimController.java
+/Users/sebastienvarnild/git/repository/ScimApiTest/src/main/java/com/varnild/scimApi/JsonResourceLoader.java
+/Users/sebastienvarnild/git/repository/ScimApiTest/src/main/java/com/varnild/scimApi/ScimController.java
+/Users/sebastienvarnild/git/repository/ScimApiTest/src/main/java/com/varnild/scimApi/RestExceptionHandler.java
+/Users/sebastienvarnild/git/repository/ScimApiTest/src/main/java/com/varnild/scimApi/ServiceController.java
+/Users/sebastienvarnild/git/repository/ScimApiTest/src/main/java/com/varnild/scimApi/ScimService.java
+/Users/sebastienvarnild/git/repository/ScimApiTest/src/main/java/com/varnild/scimApi/ScimApiTestApplication.java

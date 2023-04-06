@@ -1,7 +1,7 @@
-com/ibm/teamserver/scimApi/ScimService.class
-com/ibm/teamserver/scimApi/ErrorResponse.class
-com/ibm/teamserver/scimApi/ScimApiTestApplication.class
-com/ibm/teamserver/scimApi/ServiceController.class
-com/ibm/teamserver/scimApi/JsonResourceLoader.class
-com/ibm/teamserver/scimApi/ScimController.class
-com/ibm/teamserver/scimApi/RestExceptionHandler.class
+com/varnild/scimApi/RestExceptionHandler.class
+com/varnild/scimApi/ScimController.class
+com/varnild/scimApi/ScimService.class
+com/varnild/scimApi/ScimApiTestApplication.class
+com/varnild/scimApi/ErrorResponse.class
+com/varnild/scimApi/JsonResourceLoader.class
+com/varnild/scimApi/ServiceController.class
