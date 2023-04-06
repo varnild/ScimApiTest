@@ -1,0 +1,124 @@
+{
+    "serverUrl" : "http://localhost:8088/SCIM/",
+    "nameFormat" : "test",
+    "groups" : [{
+     	"id" : "cn=nirvana",
+        "groupName" : "Nirvana",
+        "members": [
+        	{ "id" : "cn=kurtcobain" },
+        	{ "id" : "cn=kristnovoselic" },
+        	{ "id" : "cn=davegrohl" }
+        ]
+    },{
+    	"id" : "cn=guitarist",
+        "groupName" : "Guitarist",
+        "members": [
+        	{ "id" : "cn=brianmay" },
+        	{ "id" : "cn=kurtcobain" }
+        ]
+    }],
+    "users" : [
+    	{
+    		"id" : "cn=brianmay",
+    		"userName" : "Brian May",
+    		"name" :{
+            	"givenName" : "Brian",
+            	"middleName" : "Q",
+            	"familyName" : "May"
+            },
+    		"emails" : [
+           		{
+                	"primary": true,
+                	"value": "brian@queen.com"
+            	},
+            	{
+                	"value": "brian@may.com"
+            	}
+            ]
+    	},{
+    		"id" : "cn=freddiemercury",
+    		"userName" : "Freddie Mercury",
+    		"name" :{
+            	"givenName" : "Freddie",
+            	"middleName" : "F",
+            	"familyName" : "Mercury"
+            },
+        	"emails" : [
+           		{
+                	"primary": true,
+                	"value": "freddie@queen.com"
+            	}
+            ]
+    	},{
+    		"id" : "cn=rogertaylor",
+    		"userName" : "Roger Taylor",
+    		"name" :{
+            	"givenName" : "Roger",
+            	"middleName" : "",
+            	"familyName" : "Taylor"
+            },
+        	"emails" : [
+           		{
+                	"primary": true,
+                	"value": "roger@queen.com"
+            	}
+            ]
+    	},{
+    		"id" : "cn=johndeacon",
+    		"userName" : "John Deacon",
+    		"name" :{
+            	"givenName" : "John",
+            	"middleName" : "",
+            	"familyName" : "Deacon"
+            },
+        	"emails" : [
+           		{
+                	"primary": true,
+                	"value": "john@queen.com"
+            	}
+            ]
+    	},{
+    		"id" : "cn=kurtcobain",
+    		"userName" : "Kurt Cobain",
+    		"name" :{
+            	"givenName" : "Kurt",
+            	"middleName" : "D",
+            	"familyName" : "Cobain"
+            },
+        	"emails" : [
+           		{
+                	"primary": true,
+                	"value": "kurt@nirvana.com"
+            	}
+            ]
+    	},{
+    		"id" : "cn=kristnovoselic",
+    		"userName" : "Krist Novoselic",
+    		"name" :{
+            	"givenName" : "Krist",
+            	"middleName" : "",
+            	"familyName" : "Novoselic"
+            },
+        	"emails" : [
+           		{
+                	"primary": true,
+                	"value": "krist@nirvana.com"
+            	}
+            ]
+    	},{
+    		"id" : "cn=davegrohl",
+    		"userName" : "Dave Grohl",
+    		"name" :{
+            	"givenName" : "Dave",
+            	"middleName" : "",
+            	"familyName" : "Grohl"
+            },
+        	"emails" : [
+           		{
+                	"primary": true,
+                	"value": "dave@nirvana.com"
+            	}
+            ]
+    	}
+    ]
+}

@@ -1,0 +1,32 @@
+{
+    "group" : {
+        "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"],
+        "id": "{id}",
+        "displayName": "{groupName}",
+        "members":  [{
+	        "value": "{id}",
+	        "display": "{userName}",
+	        "email": "{emails}",
+	        "$ref": "{serverUrl}{id}"
+	    }],
+        "meta": {
+            "resourceType": "Group"
+        }
+    },
+    "user" : {
+        "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],
+        "id": "{id}",
+        "displayName": "{userName}",
+        "name": "{name}",
+        "active": true,
+        "emails": "{emails}",
+        "groups": [
+            {
+                "value": "{id}",
+                "displayName": "{groupName}"
+            }],
+        "meta": {
+            "resourceType": "User"
+        }
+    }
+}
