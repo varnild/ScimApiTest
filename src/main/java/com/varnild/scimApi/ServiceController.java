@@ -17,23 +17,23 @@ public class ServiceController {
 
 	@GetMapping(path="/updateStoreStructure", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String updateDataStoreAndStructure(@RequestParam(required = true) String dataFileName, @RequestParam(required = true) String structureFileName) throws Exception {
-		service.setDataStoreFileName(dataFileName);
-		service.setStructureFileName(structureFileName);
+	public String updateDataStoreAndStructure(@RequestParam(required = true) String dFileName, @RequestParam(required = true) String sFileName) throws Exception {
+		service.setDataStoreFileName(dFileName);
+		service.setStructureFileName(sFileName);
 		return "Data store and structure updated";
 	}
 	
 	@GetMapping(path="/updateStore", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String updateDataStore(@RequestParam(required = true) String dataFileName) throws Exception {
-		service.setDataStoreFileName(dataFileName);
+	public String updateDataStore(@RequestParam(required = true) String fileName) throws Exception {
+		service.setDataStoreFileName(fileName);
 		return "Data store and structure updated";
 	}
 	
 	@GetMapping(path="/updateStructure", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String updateStructure(@RequestParam(required = true) String structureFileName) throws Exception {
-		service.setStructureFileName(structureFileName);
+	public String updateStructure(@RequestParam(required = true) String fileName) throws Exception {
+		service.setStructureFileName(fileName);
 		return "Data store and structure updated";
 	}
 

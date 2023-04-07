@@ -1,7 +1,9 @@
 package com.varnild.scimApi;
 
-import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -11,7 +13,6 @@ import java.util.regex.Pattern;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +27,6 @@ import com.fasterxml.jackson.databind.node.TextNode;
 @Service
 public class ScimService {
 	
-	@Autowired
-    private ResourceLoader resourceloader;
-	
 	private String dataStoreFileName;
 	private String structureFileName;
 
@@ -40,6 +38,15 @@ public class ScimService {
 	private JsonNode userDataNodes;
 	private String serverUrl;
 	private ObjectMapper objectMapper;
+	
+	private String header = "{\n"
+			+ "    \"totalResults\": 5,\n"
+			+ "    \"itemsPerPage\": 5,\n"
+			+ "    \"startIndex\": 1,\n"
+			+ "    \"schemas\": [\n"
+			+ "        \"urn:ietf:params:scim:api:messages:2.0:ListResponse\"\n"
+			+ "    ],\n"
+			+ "    \"Resources\": [ %s  ]}";
 	
 	
 	@PostConstruct
@@ -53,23 +60,49 @@ public class ScimService {
 	
 	public void loadData() throws Exception {
 		try {
-			Resource resourceRawData = resourceloader.getResource("file:" + dataStoreFileName + ".json");
-			Resource resourceStructure = resourceloader.getResource("file:" + structureFileName + ".json");
-			InputStream inputStreamRawData = resourceRawData.getInputStream();
-			InputStream inputStreamStructure = resourceStructure.getInputStream();
-			// JSON for the structure to implement
-			structureNode = objectMapper.readTree(inputStreamStructure);
-			// Node for a group structure that we'll use for cloning
-			groupStructureNode = structureNode.get("group");
-			// Node for a user structure that we'll use for cloning
-			userStructureNode = structureNode.get("user");
+			// hard coded path to the main resource, with a fallback to current dir path
+			String currentDir = System.getProperty("user.dir");
+			String dataPath = currentDir + "/src/main/resources/scimApiTest/" + dataStoreFileName + ".json";
+			File dataFile = new File(dataPath);
 			
-			// data tree of groups and users
-			rawDataNode = objectMapper.readTree(inputStreamRawData);
-			// get the list of groups as data 
-			groupDataNodes = rawDataNode.get("groups");
-			serverUrl = rawDataNode.get("serverUrl").asText();
-			userDataNodes = rawDataNode.get("users");
+			if (!dataFile.exists()) { 
+				dataFile = new File(currentDir + "/" + dataStoreFileName + ".json");
+				System.out.println("Path used to fetch data file: " + currentDir + "/" + dataStoreFileName + ".json");
+			} else {
+				System.out.println("Path used to fetch data file: " + dataPath);
+			}
+			
+			try (InputStream inputStreamRawData = new FileInputStream(dataFile)) {
+				// data tree of groups and users
+				rawDataNode = objectMapper.readTree(inputStreamRawData);
+				// get the list of groups as data 
+				groupDataNodes = rawDataNode.get("groups");
+				serverUrl = rawDataNode.get("serverUrl").asText();
+				userDataNodes = rawDataNode.get("users");
+			} catch (Exception e) {
+				throw new Exception("Something went wrong during the streaming of the json files", e);
+			}
+			
+			String structurePath = currentDir + "/src/main/resources/scimApiTest/" + structureFileName + ".json";
+			File structureFile = new File(structurePath);
+			
+			if (!structureFile.exists()) { 
+				structureFile = new File(currentDir + "/" + structureFileName + ".json");
+				System.out.println("Path used to fetch structure file: " + currentDir + "/" + structureFileName + ".json");
+			} else {
+				System.out.println("Path used to fetch structure file: " + structurePath);
+			}
+			
+			try (InputStream inputStreamStructure = new FileInputStream(structureFile)) {
+				structureNode = objectMapper.readTree(inputStreamStructure);
+				// Node for a group structure that we'll use for cloning
+				groupStructureNode = structureNode.get("group");
+				// Node for a user structure that we'll use for cloning
+				userStructureNode = structureNode.get("user");
+			} catch (Exception e) {
+				throw new Exception("Something went wrong during the streaming of the json files", e);
+			}
+
 		} catch (Exception e) {
 			throw new Exception("Something went wrong during the loading of the json files, please verify that " + dataStoreFileName + ".json and " + structureFileName + ".json files exists at the same path as the ScimApiTest jar" , e);
 		}
@@ -85,10 +118,12 @@ public class ScimService {
 	public String getGroups() throws Exception {
 		loadData();
 		StringBuffer sb = new StringBuffer();
+		int i = 0;
 		for(JsonNode groupDataNode : groupDataNodes ) {
-			sb.append(getGroup(groupDataNode.get("id").asText(), true));
+			sb.append(((i==0)? "" : ", ") + getGroup(groupDataNode.get("id").asText(), true));
+			i++;
 		}
-		return sb.toString();
+		return String.format(header, sb.toString());
 	}
 	
 	public String getGroup (String groupId, boolean alreadyLoaded) throws Exception {
@@ -178,10 +213,12 @@ public class ScimService {
 	public String getUsers() throws Exception {
 		loadData();
 		StringBuffer sb = new StringBuffer();
+		int i = 0;
 		for(JsonNode userDataNode : userDataNodes ) {
-			sb.append(getUser(userDataNode.get("id").asText(), true));
+			sb.append(((i==0)? "" : ", " ) + getUser(userDataNode.get("id").asText(), true));
+			i++;
 		}
-		return sb.toString();
+		return String.format(header, sb.toString());
 	}
 	
 	public String getUser(String userId, boolean alreadyLoaded) throws Exception {

@@ -1,7 +1,6 @@
+com/varnild/scimApi/ScimService.class
 com/varnild/scimApi/RestExceptionHandler.class
 com/varnild/scimApi/ScimController.class
-com/varnild/scimApi/ScimService.class
 com/varnild/scimApi/ScimApiTestApplication.class
 com/varnild/scimApi/ErrorResponse.class
-com/varnild/scimApi/JsonResourceLoader.class
 com/varnild/scimApi/ServiceController.class

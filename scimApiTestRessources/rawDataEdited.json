@@ -5,7 +5,6 @@
      	"id" : "cn=nirvana",
         "groupName" : "Nirvana",
         "members": [
-        	{ "id" : "cn=kurtcobain" },
         	{ "id" : "cn=kristnovoselic" },
         	{ "id" : "cn=davegrohl" }
         ]
@@ -14,7 +13,17 @@
         "groupName" : "Guitarist",
         "members": [
         	{ "id" : "cn=brianmay" },
-        	{ "id" : "cn=kurtcobain" }
+        	{ "id" : "cn=kurtcobain" },
+        	{ "id" : "cn=davegrohl" }
+        ]
+    },{
+    	"id" : "cn=singer",
+        "groupName" : "Singer",
+        "members": [
+        	{ "id" : "cn=brianmay" },
+        	{ "id" : "cn=kurtcobain" },
+        	{ "id" : "cn=davegrohl" },
+        	{ "id" : "cn=freddiemercury" }
         ]
     }],
     "users" : [
