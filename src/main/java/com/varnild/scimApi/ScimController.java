@@ -27,7 +27,7 @@ public class ScimController {
 			return service.getGroups();
 		} else {
 			throw new ResponseStatusException(
-			          HttpStatus.NOT_FOUND, "Wrong filter", null);
+			          HttpStatus.NOT_FOUND, "Wrong filter, should be displayName co \\\"music\\\"", null);
 		}
 	}
 	
